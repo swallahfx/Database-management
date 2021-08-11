@@ -10,3 +10,8 @@ class User(Connect):
     def all(self):
         self.cursor.execute("SELECT * FROM users")
         return self.cursor.fetchall()
+
+    def get_by_userid(self,id):
+        
+        self.cursor.execute("SELECT * FROM users WHERE id=%s ", (id,))
+        return self.cursor.fetchall()
