@@ -4,7 +4,7 @@ from datetime import datetime
 
 class User(Connect):
     def __init__(self):
-        self.connection = Connect().conn_ps()
+        self.connection = Connect().conn_psycopg2()
         self.cursor = self.connection.cursor()
     
     def all(self):
