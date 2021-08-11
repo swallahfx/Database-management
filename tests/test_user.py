@@ -17,6 +17,12 @@ class BookTest(unittest.TestCase):
         self.assertNotIsInstance(result, str)
         self.assertIsNotNone(result)
 
+    def test_get_by_userid(self):
+        result = self.book.get_by_userid(4)
+        self.assertIsNotNone(result)
+        self.assertIsInstance(result, list)
+        self.assertNotIsInstance(result, str)
+
 
     def tearDown(self):
         self.conn = None
