@@ -1,0 +1,22 @@
+DROP TABLE IF EXISTS users CASCADE;
+DROP TABLE IF EXISTS books;
+
+CREATE TABLE users (
+        id SMALLINT NOT NULL GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+        username VARCHAR(25),
+        first_name VARCHAR(25),
+        last_name VARCHAR(25),
+        created_at TIMESTAMP DEFAULT DATE_TRUNC('seconds', CURRENT_TIMESTAMP),
+        updated_at TIMESTAMP DEFAULT DATE_TRUNC('seconds', CURRENT_TIMESTAMP)
+);
+
+CREATE TABLE books (
+        id SMALLINT NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 101 INCREMENT BY 1),
+        user_id SMALLINT NOT NULL,
+        name VARCHAR(255),
+        pages SMALLINT,
+        created_at  TIMESTAMP DEFAULT DATE_TRUNC('seconds', CURRENT_TIMESTAMP),
+        updated_at  TIMESTAMP DEFAULT DATE_TRUNC('seconds', CURRENT_TIMESTAMP),
+        FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE,
+        PRIMARY KEY (id)
+);
